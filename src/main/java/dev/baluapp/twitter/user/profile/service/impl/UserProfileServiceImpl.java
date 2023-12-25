@@ -9,6 +9,8 @@ import dev.baluapp.twitter.user.profile.repository.UserProfileRepository;
 import dev.baluapp.twitter.user.profile.service.UserProfileService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
 
@@ -34,5 +36,10 @@ public class UserProfileServiceImpl implements UserProfileService {
         }
 
         this.userProfileRepository.save(userProfile);
+    }
+
+    @Override
+    public Optional<UserProfile> findUserProfileById(Long userProfileId) {
+        return this.userProfileRepository.findById(userProfileId);
     }
 }

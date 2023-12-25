@@ -4,6 +4,9 @@ spring:
     password: ${TWITTER_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${TWITTER_DB_HOST}:${TWITTER_DB_PORT}/${TWITTER_DB_NAME}
+  jpa:
+    properties:
+      hibernate.jdbc.time_zone: UTC
 logging:
   level:
     org:
