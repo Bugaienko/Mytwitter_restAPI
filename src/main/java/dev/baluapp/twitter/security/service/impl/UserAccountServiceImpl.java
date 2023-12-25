@@ -9,6 +9,8 @@ import dev.baluapp.twitter.security.repository.UserAccountRepository;
 import dev.baluapp.twitter.security.service.UserAccountService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
     private final UserAccountRepository userAccountRepository;
@@ -26,5 +28,10 @@ public class UserAccountServiceImpl implements UserAccountService {
         }
 
         this.userAccountRepository.save(userAccount);
+    }
+
+    @Override
+    public Optional<UserAccount> findUserByUsername(String username) {
+        return this.userAccountRepository.findByUsername(username);
     }
 }

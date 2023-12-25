@@ -5,8 +5,11 @@ package dev.baluapp.twitter.security.service;
 */
 
 import dev.baluapp.twitter.security.model.UserAccount;
-import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 public interface UserAccountService {
     void createUserAccount(UserAccount userAccount);
+
+    Optional<UserAccount> findUserByUsername(String username);
 }
