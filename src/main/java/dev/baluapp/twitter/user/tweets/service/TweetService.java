@@ -6,6 +6,12 @@ package dev.baluapp.twitter.user.tweets.service;
 
 import dev.baluapp.twitter.user.tweets.model.Tweet;
 
+import java.util.Optional;
+
 public interface TweetService {
     Tweet createTweet(Tweet tweet);
+
+    Tweet updateTweet(Tweet tweet);
+
+    Optional<Tweet> findTweetById(long tweetId);
 }

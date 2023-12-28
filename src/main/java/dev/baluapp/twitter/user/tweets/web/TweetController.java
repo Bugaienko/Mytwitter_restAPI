@@ -5,7 +5,9 @@ package dev.baluapp.twitter.user.tweets.web;
 */
 
 import dev.baluapp.twitter.user.tweets.usecase.TweetAddUseCase;
+import dev.baluapp.twitter.user.tweets.usecase.TweetEditUseCase;
 import dev.baluapp.twitter.user.tweets.web.model.TweetAddRequest;
+import dev.baluapp.twitter.user.tweets.web.model.TweetEditRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -16,15 +18,23 @@ import org.springframework.web.bind.annotation.*;
 public class TweetController {
 
     private final TweetAddUseCase tweetAddUseCase;
+    private final TweetEditUseCase tweetEditUseCase;
 
-    public TweetController(TweetAddUseCase tweetAddUseCase) {
+    public TweetController(TweetAddUseCase tweetAddUseCase,
+                           TweetEditUseCase tweetEditUseCase) {
         this.tweetAddUseCase = tweetAddUseCase;
+        this.tweetEditUseCase = tweetEditUseCase;
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public TweetResponse addTweet(@Valid @RequestBody TweetAddRequest addRequest) {
         return tweetAddUseCase.addTweet(addRequest);
+    }
+
+    @PutMapping
+    TweetResponse editTweet(@Valid @RequestBody TweetEditRequest editRequest) {
+        return tweetEditUseCase.editTweet(editRequest);
     }
 
 }

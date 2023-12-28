@@ -9,5 +9,7 @@ import java.time.Instant;
 public record TweetResponse(
         Long id,
         String message,
-        Instant createdTimestamp) {
+        Instant createdTimestamp,
+        Instant modifiedTimestamp
+        ) {
 }
