@@ -11,8 +11,6 @@ import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.profile.service.UserProfileService;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiService {
 
@@ -27,16 +25,12 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
 
     @Override
     public UserProfile currentUserProfile() {
+
         CurrentUserApiModel userApiModel = identityApiService.currentUserAccount()
-                .orElseThrow(() -> new RuntimeException("Пользователь доджен быть авторизован в системе"));
+                .orElseThrow(() -> new RuntimeException("Пользователь должен быть авторизован в системе"));
 
         UserProfile userProfile = this.userProfileService
-                .findUserProfileById(userApiModel.userAccountId())
-                .orElseThrow(() -> {
-                            String errorMessage = String.format("Профиля пользователя с id %d в системе не существует", userApiModel.userAccountId());
-                            return new RuntimeException(errorMessage);
-                        }
-                );
+                .findUserProfileByIdRequired(userApiModel.userAccountId());
 
         return userProfile;
     }
