@@ -28,7 +28,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public void deleteSubscription(Subscription subscription) {
-        //TODO
         this.subscriptionRepository.delete(subscription);
     }
 

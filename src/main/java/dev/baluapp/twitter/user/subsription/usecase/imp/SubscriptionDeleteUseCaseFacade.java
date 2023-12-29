@@ -26,7 +26,6 @@ public class SubscriptionDeleteUseCaseFacade implements SubscriptionDeleteUseCas
 
     @Override
     public void unSubscribe(UnSubscribeRequest unSubscribeRequest) {
-        //TODO
         Subscription subscriptionRaw = this.unSubscribeRequestToSubscriptionMapper.map(unSubscribeRequest);
 
         Subscription subscription = this.subscriptionService
