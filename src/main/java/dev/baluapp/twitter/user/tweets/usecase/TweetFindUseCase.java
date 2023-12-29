@@ -5,6 +5,7 @@ package dev.baluapp.twitter.user.tweets.usecase;
 */
 
 import dev.baluapp.twitter.user.tweets.web.model.TweeFindRequest;
+import dev.baluapp.twitter.user.tweets.web.model.TweetPageResponse;
 import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
 import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
@@ -13,5 +14,5 @@ import java.util.Collection;
 
 @Validated
 public interface TweetFindUseCase {
-    Collection<TweetResponse> findTweets(@Valid TweeFindRequest findRequest);
+    TweetPageResponse findTweets(@Valid TweeFindRequest findRequest);
 }
