@@ -7,12 +7,15 @@ package dev.baluapp.twitter.user.tweets.web;
 import dev.baluapp.twitter.user.tweets.usecase.TweetAddUseCase;
 import dev.baluapp.twitter.user.tweets.usecase.TweetDeleteUseCase;
 import dev.baluapp.twitter.user.tweets.usecase.TweetEditUseCase;
+import dev.baluapp.twitter.user.tweets.usecase.TweetFindUseCase;
 import dev.baluapp.twitter.user.tweets.web.model.TweetAddRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetEditRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/api/v1/tweets")
@@ -21,13 +24,16 @@ public class TweetController {
     private final TweetAddUseCase tweetAddUseCase;
     private final TweetEditUseCase tweetEditUseCase;
     private final TweetDeleteUseCase tweetDeleteUseCase;
+    private final TweetFindUseCase tweetFindUseCase;
 
     public TweetController(TweetAddUseCase tweetAddUseCase,
                            TweetEditUseCase tweetEditUseCase,
-                           TweetDeleteUseCase tweetDeleteUseCase) {
+                           TweetDeleteUseCase tweetDeleteUseCase,
+                           TweetFindUseCase tweetFindUseCase) {
         this.tweetAddUseCase = tweetAddUseCase;
         this.tweetEditUseCase = tweetEditUseCase;
         this.tweetDeleteUseCase = tweetDeleteUseCase;
+        this.tweetFindUseCase = tweetFindUseCase;
     }
 
     @PostMapping()
@@ -42,9 +48,14 @@ public class TweetController {
     }
 
     @DeleteMapping("/{tweetId}")
-//    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteTweet(@PathVariable long tweetId) {
         tweetDeleteUseCase.deleteTweet(tweetId);
+    }
+
+
+    @GetMapping
+    public Collection<TweetResponse> findOwnerTweets(){
+        return this.tweetFindUseCase.findTweets();
     }
 
 

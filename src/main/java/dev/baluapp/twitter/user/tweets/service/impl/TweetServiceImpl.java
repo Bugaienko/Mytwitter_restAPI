@@ -4,11 +4,13 @@ package dev.baluapp.twitter.user.tweets.service.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.tweets.model.Tweet;
 import dev.baluapp.twitter.user.tweets.repository.TweetRepository;
 import dev.baluapp.twitter.user.tweets.service.TweetService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -38,5 +40,10 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public void deleteTweet(long tweetId) {
         this.tweetRepository.deleteById(tweetId);
+    }
+
+    @Override
+    public Collection<Tweet> findAllTweets(UserProfile owner) {
+        return this.tweetRepository.findAllByUserProfile(owner);
     }
 }
