@@ -16,17 +16,17 @@ import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TweetEditUseCaseImpl implements TweetEditUseCase {
+public class TweetEditUseCaseFacade implements TweetEditUseCase {
 
     private final TweetService tweetService;
     private final TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper;
     private final TweetToTweetResponseMapper tweetToTweetResponseMapper;
     private final CurrentUserProfileApiService currentUserProfileApiService;
 
-    public TweetEditUseCaseImpl(TweetService tweetService,
-                                TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper,
-                                TweetToTweetResponseMapper tweetToTweetResponseMapper, 
-                                CurrentUserProfileApiService currentUserProfileApiService) {
+    public TweetEditUseCaseFacade(TweetService tweetService,
+                                  TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper,
+                                  TweetToTweetResponseMapper tweetToTweetResponseMapper,
+                                  CurrentUserProfileApiService currentUserProfileApiService) {
         this.tweetService = tweetService;
         this.tweetEditRequestToTweetMapper = tweetEditRequestToTweetMapper;
         this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;

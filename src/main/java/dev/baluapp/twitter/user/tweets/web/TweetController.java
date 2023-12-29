@@ -5,6 +5,7 @@ package dev.baluapp.twitter.user.tweets.web;
 */
 
 import dev.baluapp.twitter.user.tweets.usecase.TweetAddUseCase;
+import dev.baluapp.twitter.user.tweets.usecase.TweetDeleteUseCase;
 import dev.baluapp.twitter.user.tweets.usecase.TweetEditUseCase;
 import dev.baluapp.twitter.user.tweets.web.model.TweetAddRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetEditRequest;
@@ -19,11 +20,14 @@ public class TweetController {
 
     private final TweetAddUseCase tweetAddUseCase;
     private final TweetEditUseCase tweetEditUseCase;
+    private final TweetDeleteUseCase tweetDeleteUseCase;
 
     public TweetController(TweetAddUseCase tweetAddUseCase,
-                           TweetEditUseCase tweetEditUseCase) {
+                           TweetEditUseCase tweetEditUseCase,
+                           TweetDeleteUseCase tweetDeleteUseCase) {
         this.tweetAddUseCase = tweetAddUseCase;
         this.tweetEditUseCase = tweetEditUseCase;
+        this.tweetDeleteUseCase = tweetDeleteUseCase;
     }
 
     @PostMapping()
@@ -33,8 +37,15 @@ public class TweetController {
     }
 
     @PutMapping
-    TweetResponse editTweet(@Valid @RequestBody TweetEditRequest editRequest) {
+    public TweetResponse editTweet(@Valid @RequestBody TweetEditRequest editRequest) {
         return tweetEditUseCase.editTweet(editRequest);
     }
+
+    @DeleteMapping("/{tweetId}")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteTweet(@PathVariable long tweetId) {
+        tweetDeleteUseCase.deleteTweet(tweetId);
+    }
+
 
 }
