@@ -4,10 +4,14 @@ package dev.baluapp.twitter.user.tweets.usecase;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.user.tweets.web.model.TweeFindRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Collection;
 
+@Validated
 public interface TweetFindUseCase {
-    Collection<TweetResponse> findTweets();
+    Collection<TweetResponse> findTweets(@Valid TweeFindRequest findRequest);
 }

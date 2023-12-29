@@ -6,6 +6,7 @@ package dev.baluapp.twitter.user.tweets.service;
 
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.tweets.model.Tweet;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -19,5 +20,5 @@ public interface TweetService {
 
     void deleteTweet(long tweetId);
 
-    Collection<Tweet> findAllTweets(UserProfile owner);
+    Collection<Tweet> findAllTweets(UserProfile owner, Pageable pageable);
 }

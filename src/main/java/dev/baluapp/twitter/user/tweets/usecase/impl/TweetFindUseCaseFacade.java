@@ -10,11 +10,16 @@ import dev.baluapp.twitter.user.tweets.mapper.TweetToTweetResponseMapper;
 import dev.baluapp.twitter.user.tweets.model.Tweet;
 import dev.baluapp.twitter.user.tweets.service.TweetService;
 import dev.baluapp.twitter.user.tweets.usecase.TweetFindUseCase;
+import dev.baluapp.twitter.user.tweets.web.model.TweeFindRequest;
 import dev.baluapp.twitter.user.tweets.web.model.TweetResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
+
+import static dev.baluapp.twitter.user.tweets.model.Tweet_.CREATED_TIMESTAMP;
 
 @Component
 public class TweetFindUseCaseFacade implements TweetFindUseCase {
@@ -31,11 +36,15 @@ public class TweetFindUseCaseFacade implements TweetFindUseCase {
     }
 
     @Override
-    public Collection<TweetResponse> findTweets() {
+    public Collection<TweetResponse> findTweets(TweeFindRequest findRequest) {
 
         UserProfile owner = this.currentUserProfileApiService.currentUserProfile();
 
-        Collection<Tweet> allOwnerTweets = this.tweetService.findAllTweets(owner);
+        Sort sort = Sort.by(Sort.Direction.DESC, CREATED_TIMESTAMP);
+
+        Pageable pageable = PageRequest.of(findRequest.page(), findRequest.limit(), sort);
+
+        Collection<Tweet> allOwnerTweets = this.tweetService.findAllTweets(owner, pageable);
 
         return allOwnerTweets
                 .stream()
