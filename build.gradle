@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.7'
     id 'io.spring.dependency-management' version '1.1.4'
-    id 'idea'
+    id 'org.sonarqube' version '4.4.1.3373'
+    id 'jacoco'
 }
 
 group = 'dev.baluapp'
@@ -17,13 +18,6 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-
-//idea {
-//    module {
-//        downloadJavadoc = true
-//    }
-//}
-
 
 repositories {
     mavenCentral()
@@ -54,4 +48,20 @@ tasks.named('bootBuildImage') {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+sonar {
+    properties {
+        property 'sonar.host.url', 'http://localhost:9000/'
+        property 'sonar.token', 'sqp_8f9fb60764158e9a947db76424f8e2cad3dc1a7f'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+//        xml.enabled = true
+    }
+    dependsOn test // tests are required to run before generating the report
 }
