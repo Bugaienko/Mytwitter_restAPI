@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     private final UserAccountService userAccountService;
     private final UserAccountToUserMapper userMapper;
 
