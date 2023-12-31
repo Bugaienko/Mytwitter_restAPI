@@ -4,6 +4,7 @@ package dev.baluapp.twitter.security.mapper.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.security.mapper.RegisterRequestToAccountMapper;
 import dev.baluapp.twitter.security.model.UserAccount;
 import dev.baluapp.twitter.security.model.UserRole;
@@ -31,7 +32,7 @@ public class RegisterRequestToAccountMapperImpl implements RegisterRequestToAcco
     public UserAccount map(RegisterRequest registerRequest) {
         UserRole userRole = this.userRoleService
                 .findUserRole()
-                .orElseThrow(() -> new RuntimeException("User Role not found "));
+                .orElseThrow(() -> new TwitterException("User Role not found "));
 
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(registerRequest.username().toLowerCase(Locale.ROOT));

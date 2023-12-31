@@ -4,6 +4,7 @@ package dev.baluapp.twitter.user.tweets.mapper.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.user.tweets.mapper.TweetEditRequestToTweetMapper;
 import dev.baluapp.twitter.user.tweets.model.Tweet;
 import dev.baluapp.twitter.user.tweets.service.TweetService;
@@ -25,7 +26,7 @@ public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTwee
                 .findTweetById(editRequest.id())
                 .orElseThrow(() -> {
                     String errorMessage = String.format("Твит с id = %d не найден", editRequest.id());
-                    return new RuntimeException(errorMessage);
+                    return new TwitterException(errorMessage);
                 });
 
         currentTweet.setMessage(editRequest.message());

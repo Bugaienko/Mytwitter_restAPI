@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-//    boolean  existsByFollowerAndFollowed(UserProfile follower, UserProfile followed);
     boolean existsByFollowerAndFollowed(UserProfile follower, UserProfile followed);
 
     Optional<Subscription> findByFollowerAndFollowed(UserProfile follower, UserProfile followed);

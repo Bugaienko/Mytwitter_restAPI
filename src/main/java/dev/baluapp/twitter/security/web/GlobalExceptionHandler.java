@@ -1,7 +1,6 @@
 package dev.baluapp.twitter.security.web;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @author Sergey Bugaienko
 */
 @RestControllerAdvice
-public class globalExceptionHandler {
+public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ProblemDetail handleRuntimeErrors(RuntimeException ex) {
 

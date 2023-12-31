@@ -4,6 +4,7 @@ package dev.baluapp.twitter.user.subsription.usecase.imp;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.subsription.mapper.SubscribeRequestToSubscriptionMapper;
 import dev.baluapp.twitter.user.subsription.model.Subscription;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SubscriptionAddUseCaseFacade implements SubscriptionAddUseCase {
-    //    private final CurrentUserApiModel currentUserApiModel;
+
     private final SubscribeRequestToSubscriptionMapper subscriptionMapper;
     private final SubscriptionService subscriptionService;
 
@@ -32,12 +33,12 @@ public class SubscriptionAddUseCaseFacade implements SubscriptionAddUseCase {
         UserProfile followed = subscription.getFollowed();
 
         if (follower.equals(followed)) {
-            throw new RuntimeException("Подписка на самого себя не имеет смысла");
+            throw new TwitterException("Подписка на самого себя не имеет смысла");
         }
 
         if (this.subscriptionService.existsSubscription(subscription)) {
             String errorMessage = String.format("Вы уже подписаны на %s", followed.getNickname());
-            throw new RuntimeException(errorMessage);
+            throw new TwitterException(errorMessage);
         }
 
         this.subscriptionService.createSubscription(subscription);

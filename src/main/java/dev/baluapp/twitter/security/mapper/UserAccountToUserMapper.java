@@ -4,7 +4,8 @@ package dev.baluapp.twitter.security.mapper;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.mapper.Mapper;
 import dev.baluapp.twitter.security.model.UserAccount;
 import org.springframework.security.core.userdetails.User;
-public interface UserAccountToUserMapper extends Mapper<User, UserAccount>{
+public interface UserAccountToUserMapper extends Mapper<User, UserAccount> {
 }

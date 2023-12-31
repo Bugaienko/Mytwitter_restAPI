@@ -9,7 +9,6 @@ import dev.baluapp.twitter.user.profile.api.service.UserProfileApiService;
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.subsription.mapper.UnSubscribeRequestToSubscriptionMapper;
 import dev.baluapp.twitter.user.subsription.model.Subscription;
-import dev.baluapp.twitter.user.subsription.service.SubscriptionService;
 import dev.baluapp.twitter.user.subsription.web.model.UnSubscribeRequest;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +17,12 @@ public class UnSubscribeRequestToSubscriptionMapperImpl implements UnSubscribeRe
 
     private final CurrentUserProfileApiService currentUserProfileApiService;
     private final UserProfileApiService userProfileApiService;
-    private final SubscriptionService subscriptionService;
 
 
     public UnSubscribeRequestToSubscriptionMapperImpl(CurrentUserProfileApiService currentUserProfileApiService,
-                                                      UserProfileApiService userProfileApiService,
-                                                      SubscriptionService subscriptionService) {
+                                                      UserProfileApiService userProfileApiService ) {
         this.currentUserProfileApiService = currentUserProfileApiService;
         this.userProfileApiService = userProfileApiService;
-        this.subscriptionService = subscriptionService;
     }
 
     @Override

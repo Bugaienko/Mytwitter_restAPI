@@ -4,6 +4,7 @@ package dev.baluapp.twitter.user.tweets.usecase.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.user.profile.api.service.CurrentUserProfileApiService;
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.tweets.mapper.TweetEditRequestToTweetMapper;
@@ -42,7 +43,7 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
                 .map(Tweet::getUserProfile)
                 .orElseThrow(() -> {
                     String errorMessage = String.format("Твит с id = %d не найден", editRequest.id());
-                    return new RuntimeException(errorMessage);
+                    return new TwitterException(errorMessage);
                 });
 
 
@@ -51,7 +52,7 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
                     editRequest.id(),
                     activeUser.getNickname()
             );
-            throw new RuntimeException(errorMessage);
+            throw new TwitterException(errorMessage);
         }
 
         Tweet tweet = this.tweetEditRequestToTweetMapper.map(editRequest);

@@ -4,6 +4,7 @@ package dev.baluapp.twitter.security.service.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.security.model.UserAccount;
 import dev.baluapp.twitter.security.repository.UserAccountRepository;
 import dev.baluapp.twitter.security.service.UserAccountService;
@@ -24,7 +25,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         boolean isUsernameExists = this.userAccountRepository.existsByUsername(userAccount.getUsername());
 
         if (isUsernameExists) {
-            throw new RuntimeException("Account with this username already exists");
+            throw new TwitterException("Account with this username already exists");
         }
 
         this.userAccountRepository.save(userAccount);

@@ -1,4 +1,4 @@
-package dev.baluapp.twitter.security.mapper;
+package dev.baluapp.twitter.common.mapper;
 /*
 @date 25.12.2023
 @author Sergey Bugaienko

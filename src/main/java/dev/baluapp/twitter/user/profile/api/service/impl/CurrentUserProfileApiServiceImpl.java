@@ -4,6 +4,7 @@ package dev.baluapp.twitter.user.profile.api.service.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.security.api.model.CurrentUserApiModel;
 import dev.baluapp.twitter.security.api.service.IdentityApiService;
 import dev.baluapp.twitter.user.profile.api.service.CurrentUserProfileApiService;
@@ -27,7 +28,7 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
     public UserProfile currentUserProfile() {
 
         CurrentUserApiModel userApiModel = identityApiService.currentUserAccount()
-                .orElseThrow(() -> new RuntimeException("Пользователь должен быть авторизован в системе"));
+                .orElseThrow(() -> new TwitterException("Пользователь должен быть авторизован в системе"));
 
         UserProfile userProfile = this.userProfileService
                 .findUserProfileByIdRequired(userApiModel.userAccountId());

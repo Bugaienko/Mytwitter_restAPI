@@ -4,14 +4,13 @@ package dev.baluapp.twitter.user.profile.mapper.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.security.api.model.CurrentUserApiModel;
 import dev.baluapp.twitter.security.api.service.IdentityApiService;
 import dev.baluapp.twitter.user.profile.mapper.UserProfileRegisterRequestToUserProfileMapper;
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.profile.web.model.UserProfileRegisterRequest;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class UserProfileRegisterRequestToUserProfileMapperImpl implements UserProfileRegisterRequestToUserProfileMapper {
@@ -27,7 +26,7 @@ public class UserProfileRegisterRequestToUserProfileMapperImpl implements UserPr
 
         CurrentUserApiModel userApiModel = this.identityApiService
                 .currentUserAccount()
-                .orElseThrow(() -> new RuntimeException("Для создания профиля пользователь должен быть авторизован в системе"));
+                .orElseThrow(() -> new TwitterException("Для создания профиля пользователь должен быть авторизован в системе"));
 
         UserProfile userProfile = new UserProfile();
         //TODO id link

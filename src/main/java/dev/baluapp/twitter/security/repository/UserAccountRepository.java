@@ -6,7 +6,6 @@ package dev.baluapp.twitter.security.repository;
 
 import dev.baluapp.twitter.security.model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 

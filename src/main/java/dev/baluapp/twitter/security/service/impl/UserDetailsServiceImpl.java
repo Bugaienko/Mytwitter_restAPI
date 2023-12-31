@@ -7,7 +7,6 @@ package dev.baluapp.twitter.security.service.impl;
 import dev.baluapp.twitter.security.mapper.UserAccountToUserMapper;
 import dev.baluapp.twitter.security.service.UserAccountService;
 import jakarta.transaction.Transactional;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

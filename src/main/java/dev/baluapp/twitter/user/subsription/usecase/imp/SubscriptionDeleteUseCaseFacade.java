@@ -4,6 +4,7 @@ package dev.baluapp.twitter.user.subsription.usecase.imp;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.user.subsription.mapper.UnSubscribeRequestToSubscriptionMapper;
 import dev.baluapp.twitter.user.subsription.model.Subscription;
 import dev.baluapp.twitter.user.subsription.service.SubscriptionService;
@@ -35,7 +36,7 @@ public class SubscriptionDeleteUseCaseFacade implements SubscriptionDeleteUseCas
                             subscriptionRaw.getFollower().getNickname(),
                             subscriptionRaw.getFollowed().getNickname()
                     );
-                    return new RuntimeException(errorMessage);
+                    return new TwitterException(errorMessage);
                 });
 
 

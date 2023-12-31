@@ -4,6 +4,7 @@ package dev.baluapp.twitter.security.service.impl;
 @author Sergey Bugaienko
 */
 
+import dev.baluapp.twitter.common.exception.TwitterException;
 import dev.baluapp.twitter.security.service.AccessTokenService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +33,7 @@ public class JwtAccessTokenService implements AccessTokenService {
         UserDetails userDetails = Optional.of(authentication.getPrincipal())
                 .filter(UserDetails.class::isInstance)
                 .map(UserDetails.class::cast)
-                .orElseThrow(() -> new RuntimeException("Не удалось сформировать объект UserDetails из объекта Authentication"));
+                .orElseThrow(() -> new TwitterException("Не удалось сформировать объект UserDetails из объекта Authentication"));
 
         List<String> roles = userDetails.getAuthorities()
                 .stream()

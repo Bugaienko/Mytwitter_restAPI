@@ -22,9 +22,5 @@ public class UserProfileApiServiceImpl implements UserProfileApiService {
     public UserProfile findUserProfileById(Long followId) {
         return this.userProfileService
                 .findUserProfileByIdRequired(followId);
-//                .orElseThrow(() -> {
-//                    String errorMessage = String.format("Пользователь с id = %d не найден", followId);
-//                    return new RuntimeException(errorMessage);
-//                });
     }
 }

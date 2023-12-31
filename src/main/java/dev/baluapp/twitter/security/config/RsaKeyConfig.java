@@ -14,8 +14,10 @@ import java.security.interfaces.RSAPublicKey;
 
 @Configuration
 public class RsaKeyConfig {
+
     @Bean
     public static RsaKeys generateRsaKey() {
+
         KeyPair keyPair;
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
