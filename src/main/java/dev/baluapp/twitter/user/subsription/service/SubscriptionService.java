@@ -5,8 +5,12 @@ package dev.baluapp.twitter.user.subsription.service;
 */
 
 import dev.baluapp.twitter.user.profile.model.UserProfile;
+import dev.baluapp.twitter.user.subsription.model.FollowersSubscription;
 import dev.baluapp.twitter.user.subsription.model.Subscription;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface SubscriptionService {
@@ -16,4 +20,6 @@ public interface SubscriptionService {
     boolean existsSubscription (Subscription subscription);
 
     Optional<Subscription> findByFollowerAndFollowers(UserProfile follower, UserProfile followed);
+
+    Page<FollowersSubscription> findAllFollowerSubscriptions(UserProfile author, Pageable pageable);
 }
