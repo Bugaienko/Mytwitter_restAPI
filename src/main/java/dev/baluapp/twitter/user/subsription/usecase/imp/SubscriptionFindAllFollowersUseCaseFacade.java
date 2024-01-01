@@ -7,28 +7,23 @@ package dev.baluapp.twitter.user.subsription.usecase.imp;
 import dev.baluapp.twitter.user.profile.api.service.CurrentUserProfileApiService;
 import dev.baluapp.twitter.user.profile.model.UserProfile;
 import dev.baluapp.twitter.user.subsription.mapper.PageOfFollowersSubscriptionToFollowerPageResponseMapper;
-import dev.baluapp.twitter.user.subsription.mapper.PageOfFollowersSubscriptionToListOfFollowerResponseMapper;
 import dev.baluapp.twitter.user.subsription.model.FollowersSubscription;
 import dev.baluapp.twitter.user.subsription.model.Subscription_;
 import dev.baluapp.twitter.user.subsription.service.SubscriptionService;
 import dev.baluapp.twitter.user.subsription.usecase.SubscriptionFindAllFollowersUseCase;
 import dev.baluapp.twitter.user.subsription.web.model.FollowerFindRequest;
 import dev.baluapp.twitter.user.subsription.web.model.FollowerPageResponse;
-import dev.baluapp.twitter.user.subsription.web.model.FollowerResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class SubscriptionFindAllFollowersUseCaseFacade implements SubscriptionFindAllFollowersUseCase {
 
     private final CurrentUserProfileApiService currentUserProfileApiService;
     private final SubscriptionService subscriptionService;
-    //    private final PageOfFollowersSubscriptionToListOfFollowerResponseMapper pageOfFollowersSubscriptionToListOfFollowerResponseMapper;
     private final PageOfFollowersSubscriptionToFollowerPageResponseMapper pageOfFollowersSubscriptionToFollowerPageResponseMapper;
 
 

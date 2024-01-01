@@ -9,7 +9,6 @@ import dev.baluapp.twitter.user.subsription.mapper.PageOfFollowersSubscriptionTo
 import dev.baluapp.twitter.user.subsription.model.FollowersSubscription;
 import dev.baluapp.twitter.user.subsription.web.model.FollowerPageResponse;
 import dev.baluapp.twitter.user.subsription.web.model.FollowerResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
