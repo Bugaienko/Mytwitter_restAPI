@@ -17,3 +17,12 @@ databaseChangeLog:
   - include:
       file: 001/changelog-create-public-generated_data.sql
       relativeToChangelogFile: true
+  - include:
+      file: 001/changelog-prepare-db-for-loading-tweets.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 001/changelog-load-famous_quotes-from-file.yaml
+      relativeToChangelogFile: true
+  - include:
+        file: 001/changelog-distribution-quotes-to-tweets.sql
+        relativeToChangelogFile: true
