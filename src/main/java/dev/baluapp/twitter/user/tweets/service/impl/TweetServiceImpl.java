@@ -47,4 +47,9 @@ public class TweetServiceImpl implements TweetService {
     public Page<Tweet> findAllTweets(UserProfile owner, Pageable pageable) {
         return this.tweetRepository.findAllByUserProfile(owner, pageable);
     }
+
+    @Override
+    public Page<Tweet> findAllFollowerTweets(UserProfile follower, Pageable pageable) {
+        return this.tweetRepository.findAllFollowerTweets(follower.getId(), pageable);
+    }
 }

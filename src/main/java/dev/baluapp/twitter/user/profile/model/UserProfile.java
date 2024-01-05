@@ -4,12 +4,12 @@ package dev.baluapp.twitter.user.profile.model;
 @author Sergey Bugaienko
 */
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import dev.baluapp.twitter.user.subsription.model.Subscription;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +25,9 @@ public class UserProfile {
 
     @Column(nullable = false)
     private String imageLink;
+
+    @OneToMany
+    @JoinColumn(name = "followed_id", referencedColumnName = "id")
+    private List<Subscription> followers;
 
 }
