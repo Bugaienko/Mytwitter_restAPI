@@ -52,6 +52,8 @@ public class SecurityConfig {
                         .requestMatchers("api/v1/accounts/register").permitAll()
                         .requestMatchers("/api/v1/authentication/access_token").permitAll()
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/v1/demo/just-role-user").hasRole("USER")
                         .requestMatchers("/api/v1/demo/just-role-admin").hasRole("ADMIN")
                         .requestMatchers("/api/v1/demo/just-auth").authenticated()
